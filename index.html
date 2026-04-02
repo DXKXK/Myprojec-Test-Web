@@ -63,19 +63,58 @@
 
     <script>
         let scrollIndex = 1;
+        let direction = 1;
+        let startY;
+        let endY;
+        let isScroll = false;
+        let IsTouch = false;
 
+        // 鼠标滚动
         document.querySelector('.content-box').addEventListener('wheel', (e) => {
             e.preventDefault();
-            scrollIndex ++;
-            console.log(scrollIndex);
+            direction = e.wheelDelta > 0 ? -1 : 1;
+            ScrollPage(e);
+        }, { passive: false });
+
+        // 触摸滑动
+        // ——滑动开始
+        document.querySelector('.content-box').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const container = e.currentTarget;
+            const touch = e.touches[0];
+            startY = touch.clientY;
+        });
+        // ——滑动中
+        document.querySelector('.content-box').addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            endY = touch.clientY;
+            direction = (endY - startY) > 0 ? -1 : 1;
+            
+        }, { passive: false });
+        // ——滑动结束
+        document.querySelector('.content-box').addEventListener('touchend', (e) => {
+            e.preventDefault();
+            ScrollPage(e);
+        });
+
+
+        function ScrollPage(e){
+            if (IsTouch) return;
+            IsTouch = true;
             const container = e.currentTarget;
             const containerHeight = (container.clientHeight - container.clientHeight * 0.4);
-            const delta = Math.sign(e.deltaY) * containerHeight;
+            const delta = direction * containerHeight;
             container.scrollBy({
                 top: delta,
                 behavior: 'smooth'
             });
-        }, { passive: false });
+            setTimeout(()=>{
+                IsTouch = false;
+            }, 500);
+        }
+
+
     </script>
 </body>
 </html>
