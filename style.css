@@ -1,0 +1,346 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.content{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(212, 212, 212);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+.content::before , .content::after{
+    position: absolute;
+    bottom: 0;
+    pointer-events: none;
+    content: "";
+    transition: all 0.8s;
+    background-color: rgb(255, 255, 255, 0.6);
+}
+.content::after{
+    height: 50%;
+    width: 70%;
+    z-index: 0;
+}
+.content::before{
+    height: 50%;
+    width: 75%;
+    z-index: 1;
+}
+/* 顶部导航栏 */
+.top-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 5;
+    pointer-events: none;
+    transition: all 0.5s;
+    background-color: rgb(255, 255, 255, 0);
+}
+/* --LOGO设计 */
+.top-box img{
+    position: absolute;
+    left: 24px;
+    top: 18px;
+    height: 30px;
+}
+/* --菜单按钮样式设计 */
+.btn-check{
+    position: absolute;
+    right: 24px;
+    top: 18px;
+    height: 24px;
+    width: 30px;;
+    background-color: transparent;
+    appearance: none;
+    transition: all 0.5s;
+    z-index: 999;
+    cursor: pointer;
+}
+.btn-check:focus{
+    outline: none;
+}
+.menu-btn span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    overflow: hidden;
+    text-indent: 200%;
+    transition: all 0.5s;
+}
+.menu-btn {
+    position: absolute;
+    right: 24px;
+    top: 18px;
+    height: 24px;
+    width: 30px;
+    outline: none;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.menu-btn:after, .menu-btn:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    pointer-events: none;
+    border-radius: 2px;
+    content: "";
+    transform-origin: 50% 50%;
+    transition: all 0.5s;
+}
+.menu-btn span, .menu-btn:after, .menu-btn:before {
+    background: rgb(95, 101, 111);
+}
+/* --菜单按钮交互设计 */
+.menu-btn:before {
+    transform: translate3d(0,-10px,0) scaleX(.8);
+}
+.menu-btn:after {
+    transform: translate3d(0,10px,0) scaleX(.8);
+}
+.btn-check:checked ~ .content .top-box .menu-btn:before {
+    transform: rotate(45deg);
+}
+.btn-check:checked ~ .content .top-box .menu-btn:after{
+    transform: rotate(-45deg);
+}
+.btn-check:checked ~ .content .top-box .menu-btn span{
+    opacity: 0;
+}
+.btn-check:checked ~ .content .content-box{
+    width: 80%;
+    height: 50%;
+}
+.btn-check:checked ~ .content .nav-box{
+    top: 80px;
+    opacity: 1;
+}
+.btn-check:checked ~ .content .top-box{
+    background-color: rgb(255, 255, 255, 0.5);
+}
+/* --导航栏样式设计 */
+.nav-box{
+    position: absolute;
+    top: 120px;
+    width: 90%;
+    height: 20%;
+    transition: all 1s;
+    /* background-color: rgba(255, 255, 255, 1); */
+    opacity: 0;
+}
+.nav-grid{
+    width: 90%;
+    height: 80%;
+    display: grid;
+    gap: 10px;
+}
+.nav-grid div{
+    position: relative;
+    color: gray;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-self: center;
+    cursor: pointer;
+}
+/* 声明部分样式 */
+.statement-box{
+    width: 100%;
+    height: 15vh;
+    background-color: black;
+    scroll-snap-align: center;
+}
+/* --整体导航栏样式交互设计 */
+.nav-grid div:before{
+    position: absolute;
+    bottom: -2px;
+    content: '';
+    width: 0px;
+    height: 2px;
+    transition: all 0.5s;
+    background-color: rgb(255, 255, 255);
+}
+.nav-grid div:hover::before {
+    width: 100px;
+}
+/* --内容页面样式设计 */
+.content-box{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255, 1);
+    transition: all 0.5s;
+    z-index: 3;
+    /* 允许垂直滚动 */
+    overflow-y: scroll;
+    /* 垂直方向强制捕捉 */
+    scroll-snap-type: y mandatory; 
+    /* 允许快速滚动跳过页面 */
+    scroll-snap-stop: normal;
+    /* 平滑滚动 */
+    scroll-behavior: smooth; 
+}
+/* 隐藏滚动条 */
+.content-box::-webkit-scrollbar {
+    display: none;
+}
+.content-box .content-page{
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    background-color: rgb(189, 189, 245);
+    transition: all 1s;
+    /* 改为居中对齐而非顶部对齐 */
+    scroll-snap-align: center; 
+    font-size: 50px;
+}
+.content-box div:nth-child(2n+1){
+    filter: hue-rotate(45deg);
+}
+/* 内容导航栏设置 */
+.content-nav div a{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+/* ——————————————————————————————————响应式设计—————————————————————————————————— */
+
+/* 竖屏样式 */
+@media (orientation: portrait) {
+    /* --菜单按钮交互设计 */
+    .btn-check:checked ~ .content::before{
+        bottom: 3%;
+    }
+    .btn-check:checked ~ .content::after{
+        bottom: 6%;
+    }
+    /* --整体导航栏样式设计 */
+    .nav-box{
+        left: 0;
+        height: 30%;
+    }
+    .nav-grid{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .nav-grid div{
+        margin-left: 30px;
+        justify-content: start;
+    }
+    /* 内容页导航栏设计 */
+    /* .content-top {
+        position: sticky;
+        top: 0;
+        left: 100%;
+        height: 100%;
+        width: 72px;
+        z-index: 6;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .content-top img{
+        display: none;
+    }
+    .content-top .content-nav{
+        position: absolute;
+        width: 100%;
+        height: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: aqua;
+    }
+    .content-nav div{
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    } */
+}
+
+/* 横屏样式 */
+@media (orientation: landscape) {
+    /* --菜单按钮交互设计 */
+    .btn-check:checked ~ .content::before{
+        bottom: 5%;
+    }
+    .btn-check:checked ~ .content::after{
+        bottom: 10%;
+    }
+    /* --整体导航栏样式设计 */
+    .nav-box{
+        left: 50%;
+        transform: translateX(-50%);
+        height: 20%;
+    }
+    .nav-grid{
+        grid-template-columns: repeat(3,1fr);
+    }
+    .nav-grid div{
+        justify-content: center;
+    }
+    /* 内容页导航栏设计 */
+    .content-top{
+        position: sticky;
+        top: 0;
+        left: 0;
+        height: 60px;
+        width: 100%;
+        z-index: 6;
+        background-color: white;
+    }
+    .content-top img{
+        position: absolute;
+        height: 30px;
+        left: 24px;
+        top: 18px;
+    }
+    .content-top .content-nav{
+        position: absolute;
+        right: 72px;
+        width: 50%;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        /* background-color: aqua; */
+    }
+    .content-nav div{
+        flex: 1;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+    }
+}
+
+/* ——————————————————————————通用样式—————————————————————————— */
+/* 弹性布局————纵向排列 */
+.flex-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+/* 弹性布局————横向排列 */
+.flex-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

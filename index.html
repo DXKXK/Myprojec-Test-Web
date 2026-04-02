@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gcp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="checkbox" class="btn-check">
+    <div class="content">
+        <div class="top-box">
+            <!-- <img src="logo.png" alt="LOGO"> -->
+            <button class="menu-btn">
+                <span></span>
+            </button>
+        </div>
+        
+        <div class="nav-box">
+            <div class="nav-grid">
+                <div>板块1</div>
+                <div>板块2</div>
+                <div>板块3</div>
+                <div>板块4</div>
+                <div>板块5</div>
+                <div>板块6</div>
+            </div>
+        </div>
+        
+        <div class="content-box">
+            <div class="content-top">
+                <!-- <img src="logo.png" alt="LOGO"> -->
+                <div class="content-nav">
+                    <div>
+                        <a href="#page1">页面1</a>
+                    </div>
+                    <div>
+                        <a href="#page2">页面2</a>
+                    </div>
+                    <div>
+                        <a href="#page3">页面3</a>
+                    </div>
+                    <div>
+                        <a href="#page4">页面4</a>
+                    </div>
+                    <div>
+                        <a href="#page5">页面5</a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-page flex-column" id="page1">页面1</div>
+            <div class="content-page flex-column" id="page2">页面2</div>
+            <div class="content-page flex-column" id="page3">页面3</div>
+            <div class="content-page flex-column" id="page4">页面4</div>
+            <div class="content-page flex-column" id="page5">页面5</div>
+            
+            <div class="statement-box" id="pageInfo"></div>
+        </div>
+        
+
+    </div>
+
+    <script>
+        let scrollIndex = 1;
+
+        document.querySelector('.content-box').addEventListener('wheel', (e) => {
+            e.preventDefault();
+            scrollIndex ++;
+            console.log(scrollIndex);
+            const container = e.currentTarget;
+            const containerHeight = (container.clientHeight - container.clientHeight * 0.4);
+            const delta = Math.sign(e.deltaY) * containerHeight;
+            container.scrollBy({
+                top: delta,
+                behavior: 'smooth'
+            });
+        }, { passive: false });
+    </script>
+</body>
+</html>
