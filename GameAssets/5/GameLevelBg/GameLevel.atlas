@@ -1,0 +1,209 @@
+
+GameLevel.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+A_tree1
+  rotate: true
+  xy: 3206, 1551
+  size: 721, 473
+  orig: 721, 473
+  offset: 0, 0
+  index: -1
+A_tree2
+  rotate: true
+  xy: 3291, 920
+  size: 629, 553
+  orig: 629, 553
+  offset: 0, 0
+  index: -1
+A_tree3
+  rotate: true
+  xy: 3728, 2304
+  size: 631, 349
+  orig: 631, 349
+  offset: 0, 0
+  index: -1
+A_tree4
+  rotate: true
+  xy: 3020, 720
+  size: 768, 269
+  orig: 768, 269
+  offset: 0, 0
+  index: -1
+A_tree5
+  rotate: true
+  xy: 3911, 3686
+  size: 384, 175
+  orig: 384, 175
+  offset: 0, 0
+  index: -1
+A_tree6
+  rotate: false
+  xy: 2301, 2274
+  size: 1425, 661
+  orig: 1425, 661
+  offset: 0, 0
+  index: -1
+A_tree7
+  rotate: true
+  xy: 3911, 3405
+  size: 279, 133
+  orig: 279, 133
+  offset: 0, 0
+  index: -1
+A_tree8
+  rotate: false
+  xy: 3681, 1615
+  size: 396, 219
+  orig: 396, 219
+  offset: 0, 0
+  index: -1
+A_tree9
+  rotate: false
+  xy: 3911, 3224
+  size: 155, 179
+  orig: 155, 179
+  offset: 0, 0
+  index: -1
+BU_tree1
+  rotate: true
+  xy: 2053, 503
+  size: 249, 198
+  orig: 249, 198
+  offset: 0, 0
+  index: -1
+BU_tree2
+  rotate: true
+  xy: 2079, 2
+  size: 340, 385
+  orig: 340, 385
+  offset: 0, 0
+  index: -1
+BU_tree3
+  rotate: false
+  xy: 2, 1861
+  size: 2297, 862
+  orig: 2297, 862
+  offset: 0, 0
+  index: -1
+BU_tree4
+  rotate: false
+  xy: 3681, 1836
+  size: 396, 436
+  orig: 396, 436
+  offset: 0, 0
+  index: -1
+BU_tree5
+  rotate: false
+  xy: 2466, 16
+  size: 272, 326
+  orig: 272, 326
+  offset: 0, 0
+  index: -1
+BU_tree6
+  rotate: false
+  xy: 1632, 10
+  size: 445, 469
+  orig: 445, 469
+  offset: 0, 0
+  index: -1
+BU_tree7
+  rotate: false
+  xy: 1006, 17
+  size: 624, 462
+  orig: 624, 462
+  offset: 0, 0
+  index: -1
+B_tree
+  rotate: true
+  xy: 2, 39
+  size: 713, 1002
+  orig: 713, 1002
+  offset: 0, 0
+  index: -1
+C_tree
+  rotate: false
+  xy: 2301, 768
+  size: 717, 720
+  orig: 717, 720
+  offset: 0, 0
+  index: -1
+D_tree
+  rotate: false
+  xy: 2301, 1490
+  size: 903, 782
+  orig: 903, 782
+  offset: 0, 0
+  index: -1
+E_tree
+  rotate: false
+  xy: 2301, 344
+  size: 465, 422
+  orig: 465, 422
+  offset: 0, 0
+  index: -1
+F_tree
+  rotate: false
+  xy: 2768, 475
+  size: 199, 291
+  orig: 199, 291
+  offset: 0, 0
+  index: -1
+G_tree
+  rotate: false
+  xy: 3911, 3047
+  size: 171, 175
+  orig: 171, 175
+  offset: 0, 0
+  index: -1
+H_tree
+  rotate: false
+  xy: 2969, 510
+  size: 275, 208
+  orig: 275, 208
+  offset: 0, 0
+  index: -1
+I_tree
+  rotate: false
+  xy: 3291, 712
+  size: 497, 206
+  orig: 497, 206
+  offset: 0, 0
+  index: -1
+Q1
+  rotate: false
+  xy: 2, 754
+  size: 2297, 360
+  orig: 2297, 360
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 2725
+  size: 2297, 1345
+  orig: 2297, 1345
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 2301, 2937
+  size: 1608, 1133
+  orig: 1608, 1133
+  offset: 0, 0
+  index: -1
+shadow
+  rotate: false
+  xy: 1006, 481
+  size: 1045, 271
+  orig: 1045, 271
+  offset: 0, 0
+  index: -1
+water
+  rotate: false
+  xy: 2, 1116
+  size: 2297, 743
+  orig: 2297, 743
+  offset: 0, 0
+  index: -1

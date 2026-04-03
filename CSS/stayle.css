@@ -1,0 +1,228 @@
+:root {
+    --transition-duration: 0.6s;
+    --transition-timing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --active-scale: 1.5;
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --active-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    /* 防止选中 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+img{
+    /* 防止图片接收鼠标事件 */
+    /* pointer-events: none; */
+    /* 防止选中 */
+    user-select: none;
+    /* 防止在WebKit浏览器中拖动 */
+    -webkit-user-drag: none;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+    overflow: hidden;
+}
+
+.flex-center-colume {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.flex-center-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.container {
+    /* width: 100dvw; */
+    height: 100dvh;
+    aspect-ratio: 16/9;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    /* width: 100vw; */
+    height: 100dvh;
+    aspect-ratio: 16/9;
+    position: relative;
+}
+
+.control {
+    width: 70%;
+    height: 3vw;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(-100%);
+    justify-content: space-around !important;
+}
+
+.item {
+    width: 100%;
+    position: absolute;
+    aspect-ratio: 16/9;
+    transition: all var(--transition-duration) var(--transition-timing);
+    /* overflow: hidden; */
+    transform-style: preserve-3d;
+    background-color: transparent;
+}
+
+.choose {
+    background-color: rgb(0, 0, 0);
+    transform: scale(1) translateZ(20px);
+    /* width: 100%; */
+}
+
+.active {
+    transform: scale(0.75) translateZ(20px);
+    z-index: 10;
+}
+
+.prev {
+    transform: scale(0.5) translateX(-130%) rotateY(15deg);
+    z-index: 5;
+}
+
+.next {
+    transform: scale(0.5) translateX(130%) rotateY(-15deg);
+    z-index: 5;
+}
+
+/* Spine模型样式 */
+.spine-player-canvas,
+.spine-player {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.spine-player-buttons {
+    display: none;
+}
+
+.controlBtn {
+    width: 3vw;
+    aspect-ratio: 1/1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    outline: none;
+    background-color: transparent;
+    border: none;
+}
+
+/* 开始游戏，返回选择按钮，重置按钮 */
+.GameStart,
+.GameReturn,
+.GameReSet {
+    width: 9vw;
+    height: 5vh;
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    right: 3%;
+    cursor: pointer;
+    transition: all 0.5s;
+    z-index: -1;
+    opacity: 0;
+    /* border: white 2px solid; */
+}
+
+.GameStart:hover,
+.GameReturn:hover,
+.GameReSet:hover {
+    width: calc(9vw + 5vh);
+    color: rgba(255, 255, 255, 1);
+}
+
+.GameStart:hover img,
+.GameReturn:hover img,
+.GameReSet:hover img {
+    opacity: 1;
+    animation: FlowerRotate 3s linear infinite;
+}
+
+@keyframes FlowerRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.GameStart {
+    bottom: 17vh;
+}
+
+.GameReturn {
+    bottom: 10vh;
+}
+.GameReSet{
+    bottom: 3vh;
+}
+
+.GameStart img,
+.GameReturn img,
+.GameReSet img {
+    transition: all 0.5s;
+    position: absolute;
+    right: 0;
+    height: 5vh;
+    aspect-ratio: 1/1;
+    opacity: 0;
+}
+
+.GameStart p,
+.GameReturn p,
+.GameReSet p {
+    height: 9vw;
+    height: 5vh;
+    line-height: 5vh;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    left: 10px;
+}
+
+.imgbox {
+    position: absolute;
+    top: 3vh;
+    right: 3vw;
+    width: 20%;
+    opacity: 0;
+    background-color: transparent;
+}
+
+.imgbox img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 遮罩层 */
+.BG {
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    position: fixed;
+    z-index: -1;
+    transition: all 0.5s;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            // 加载游戏数据
+            const data = JSON.parse(localStorage.getItem('gameData'));
+            if (data) {
+                console.log(data);
+                localStorage.removeItem('gameData');
+                document.documentElement.style.setProperty('--ChessBG', `url(${data.url}/GameAssets/Level/Chess.png)`);
+                document.documentElement.style.setProperty('--FinishBG', `url(${data.url}/GameAssets/Level/Black_BG.png)`);
+                document.documentElement.style.setProperty('--DialogBG', `url(${data.url}/GameAssets/Level/Content.png)`);
+                document.documentElement.style.setProperty('--Disable', `url(${data.url}/GameAssets/Blocks/Disable.png)`);
+            } else {
+                alert("游戏数据丢失");
+                return;
+            }
+            // 加载Spine运行时
+            const spine_runtime = document.createElement('script');
+            spine_runtime.src = `${data.url}/JS/spine-player.js`;
+            document.body.appendChild(spine_runtime);
+            spine_runtime.onload = function () {
+                // 加载JS脚本
+                const script = document.createElement('script');
+                script.src = `${data.url}/JS/level.js`;
+                document.body.appendChild(script);
+                script.onload = function () {
+                    init(data);
+                };
+            }
+            // 加载网页图标
+            const link_icon = document.createElement('link');
+            link_icon.rel = 'icon';
+            link_icon.href = `${data.url}/GameAssets/${data.game}/Icon.png`;
+            document.head.appendChild(link_icon);
+            // 加载CSS样式
+            const link_css = document.createElement('link');
+            link_css.rel = 'stylesheet';
+            link_css.href = `${data.url}/CSS/level.css`;
+            document.head.appendChild(link_css);
+            // 设置标题
+            document.title = `Sakura Hime ${data.game}`;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="webbg">
+        <!-- 关卡背景 -->
+        <div class="spinebg" id="SpineBg">
+            <div class="btn" id="Btn"></div>
+        </div>
+        <!-- 棋盘 -->
+         <div class="chess">
+            <div class="blockbox" id="BlockBox"></div>
+         </div>
+         <!-- 结算界面 -->
+          <div class="finish" id="Finish"></div>
+        <!-- 橘色动态立绘 -->
+        <div class="characteridle" id="CharacterIdle"></div>
+    </div>
+</body>
+
+</html>

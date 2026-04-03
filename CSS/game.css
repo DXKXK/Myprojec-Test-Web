@@ -1,0 +1,301 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* 防止选中 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+img{
+    /* 防止图片接收鼠标事件 */
+    /* pointer-events: none; */
+    /* 防止选中 */
+    user-select: none;
+    /* 防止在WebKit浏览器中拖动 */
+    -webkit-user-drag: none;
+}
+
+@font-face {
+    font-family: SakuraHime;
+    /* src: var(--GameFont); */
+    src: url(../GameAssets/font/源流明體TW-EL.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #000;
+    overflow: hidden;
+}
+
+/* .BigBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100dvw;
+    height: 100dvh;
+} */
+.spine-player-canvas,
+.spine-player {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+
+.spine-player-buttons {
+    display: none;
+}
+
+.spinebg {
+    /* width: 100vw; */
+    height: 100dvh;
+    aspect-ratio: 16/9;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.webbg {
+    /* width: 100vw; */
+    height: 100dvh;
+    aspect-ratio: 16/9;
+    background-color: black;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.close {
+    position: absolute;
+    right: 3vw;
+    top: 1vw;
+    width: 1.5vw;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.close img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 关卡选择李彪 */
+.levelchoselist {
+    width: 60%;
+    height: 100%;
+    overflow: auto;
+    scrollbar-width: none;
+    /* display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column; */
+    z-index: 2;
+}
+
+.levelcard {
+    width: 100%;
+    aspect-ratio: 1364/372;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.levelcard:hover {
+    background-image: var(--Selected);
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; */
+}
+
+.level .avatar {
+    height: 100%;
+    aspect-ratio: 436/312;
+    position: absolute;
+    left: 5px;
+    z-index: 4;
+    cursor: pointer;
+}
+
+.level {
+    position: relative;
+    width: calc(100% - 3cqw);
+    aspect-ratio: 1304/312;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: var(--LevelContent);
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    container-type: size;
+}
+
+.levelcontent {
+    --h: calc(100% / 7cqh);
+    height: 85.7%;
+    width: 59%;
+    position: absolute;
+    top: calc(100% / 14cqh);
+    right: 3.5cqw;
+    z-index: 4;
+    /* background-color: rgba(205, 159, 100,.5); */
+    display: flex;
+    flex-direction: column;
+    /* flex: 6; */
+    container-type: size;
+}
+
+.charactername {
+    flex: 2;
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    color: #965E3E;
+    font-size: 20cqh;
+    line-height: 20cqh;
+    font-weight: bolder;
+    font-family: SakuraHime;
+}
+
+.levelinfomation {
+    flex: 4;
+    width: 100%;
+    /* background-color: rgba(0, 255, 255,0.5); */
+    /* 自动换行 */
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    word-wrap: break-word;
+    color: #965E3E;
+    font-size: 7.5cqh;
+    line-height: 15cqh;
+    font-weight: lighter;
+    font-family: SakuraHime;
+}
+
+/* 关卡选择后的页面 */
+.gamechoseBG {
+    height: 100dvh;
+    aspect-ratio: 16/9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+    transform: scale(1.5);
+    background-color: rgba(44, 34, 34, 0.8);
+    z-index: -1;
+}
+
+.gamechoseBG img {
+    position: absolute;
+    height: 100dvh;
+    aspect-ratio: 960/1080;
+    left: -3%;
+    top: 0;
+}
+
+.lettercontent {
+    width: 100%;
+    aspect-ratio: 1920/644;
+    background-image: var(--LetterContent);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    container-type: size;
+}
+
+.lettercharactername {
+    height: calc(100% / 8);
+    width: 15%;
+    position: absolute;
+    top: calc(100% / 8);
+    /* transform: translateY(138%); */
+    color: #ffffff;
+    font-size: 8cqh;
+    line-height: 10cqh;
+    text-align: center;
+    font-weight: bolder;
+    font-family: SakuraHime;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    /* background-color: aquamarine; */
+}
+
+.letterstory {
+    width: 50%;
+    height: 33%;
+    line-height: 8cqh;
+    font-size: 3.1cqh;
+    font-family: SakuraHime;
+    font-weight: lighter;
+    word-wrap: break-word;
+    color: #C69E86;
+    /* height: calc(3 * (100% / 8)); */
+    transform: translateX(40%) translateY(-18%);
+    /* background-color: rgba(235, 228, 228, 0.3); */
+}
+.chapter{
+    position: absolute;
+    width: 28.7%;
+    aspect-ratio: 6.5/1;
+    /* background-color: rgba(235, 228, 228, 0.5); */
+    container-type: size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    transform: translateY(185%) translateX(67%);
+}
+.chapteritem{
+    width: 15%;
+    aspect-ratio: 1/1;
+    margin-left: 2cqw;
+    margin-right: 2cqw;
+    cursor: pointer;
+    position: relative;
+}
+.chapteritem:hover{
+    background-image: var(--ChapterBG);
+    background-position: center center;
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+}
+.chapteritem img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

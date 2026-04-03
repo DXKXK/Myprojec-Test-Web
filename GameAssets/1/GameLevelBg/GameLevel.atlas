@@ -1,0 +1,125 @@
+
+GameLevel.png
+size: 4096,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+BG
+  rotate: false
+  xy: 2, 860
+  size: 2036, 1146
+  orig: 2036, 1146
+  offset: 0, 0
+  index: -1
+D1
+  rotate: true
+  xy: 3310, 552
+  size: 586, 279
+  orig: 586, 279
+  offset: 0, 0
+  index: -1
+D2
+  rotate: false
+  xy: 2927, 1140
+  size: 675, 311
+  orig: 675, 311
+  offset: 0, 0
+  index: -1
+D3
+  rotate: false
+  xy: 1014, 240
+  size: 643, 371
+  orig: 643, 371
+  offset: 0, 0
+  index: -1
+D4
+  rotate: false
+  xy: 1659, 321
+  size: 374, 290
+  orig: 374, 290
+  offset: 0, 0
+  index: -1
+D5
+  rotate: false
+  xy: 2040, 725
+  size: 735, 463
+  orig: 735, 463
+  offset: 0, 0
+  index: -1
+L1
+  rotate: false
+  xy: 1014, 37
+  size: 728, 201
+  orig: 728, 201
+  offset: 0, 0
+  index: -1
+L2
+  rotate: false
+  xy: 2777, 716
+  size: 531, 422
+  orig: 531, 422
+  offset: 0, 0
+  index: -1
+L3
+  rotate: true
+  xy: 3837, 1538
+  size: 468, 257
+  orig: 468, 257
+  offset: 0, 0
+  index: -1
+L4
+  rotate: false
+  xy: 2927, 1453
+  size: 908, 553
+  orig: 908, 553
+  offset: 0, 0
+  index: -1
+L5
+  rotate: false
+  xy: 2040, 1190
+  size: 885, 816
+  orig: 885, 816
+  offset: 0, 0
+  index: -1
+L6
+  rotate: false
+  xy: 2, 2
+  size: 1010, 609
+  orig: 1010, 609
+  offset: 0, 0
+  index: -1
+L7
+  rotate: false
+  xy: 2040, 604
+  size: 419, 119
+  orig: 419, 119
+  offset: 0, 0
+  index: -1
+R1
+  rotate: false
+  xy: 3604, 1284
+  size: 231, 167
+  orig: 231, 167
+  offset: 0, 0
+  index: -1
+R2
+  rotate: false
+  xy: 2035, 443
+  size: 416, 159
+  orig: 416, 159
+  offset: 0, 0
+  index: -1
+R3
+  rotate: false
+  xy: 2461, 610
+  size: 274, 113
+  orig: 274, 113
+  offset: 0, 0
+  index: -1
+qiao
+  rotate: false
+  xy: 2, 613
+  size: 2036, 245
+  orig: 2036, 245
+  offset: 0, 0
+  index: -1

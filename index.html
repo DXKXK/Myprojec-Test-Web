@@ -1,120 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gcp</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Sakura Hime</title>
+    <link rel="icon" type="image/x-icon" href="./GameAssets/Flower.png"/>
+    <link rel="stylesheet" href="./CSS/spine-player.css">
+    <link rel="stylesheet" href="./CSS/stayle.css">
+    <script src="./JS/spine-player.js"></script>
 </head>
 <body>
-    <input type="checkbox" class="btn-check">
-    <div class="content">
-        <div class="top-box">
-            <!-- <img src="logo.png" alt="LOGO"> -->
-            <button class="menu-btn">
-                <span></span>
-            </button>
+    <!-- 游戏轮播界面 -->
+    <div class="container flex-center-colume">
+        <div class="content flex-center-colume">
+            <div class="item active" id="Game0"></div>
+            <div class="item active" id="Game1"></div>
+            <div class="item active" id="Game2"></div>
+            <div class="item active" id="Game3"></div>
+            <div class="item active" id="Game4"></div>
+            <div class="BG" id="BG"></div>
         </div>
-        
-        <div class="nav-box">
-            <div class="nav-grid">
-                <div>板块1</div>
-                <div>板块2</div>
-                <div>板块3</div>
-                <div>板块4</div>
-                <div>板块5</div>
-                <div>板块6</div>
-            </div>
+        <div class="imgbox" id="ImgBox">
+            <img id="GameLogo" src="" alt="游戏Logo">
         </div>
-        
-        <div class="content-box">
-            <div class="content-top">
-                <!-- <img src="logo.png" alt="LOGO"> -->
-                <div class="content-nav">
-                    <div>
-                        <a href="#page1">页面1</a>
-                    </div>
-                    <div>
-                        <a href="#page2">页面2</a>
-                    </div>
-                    <div>
-                        <a href="#page3">页面3</a>
-                    </div>
-                    <div>
-                        <a href="#page4">页面4</a>
-                    </div>
-                    <div>
-                        <a href="#page5">页面5</a>
-                    </div>
-                </div>
-            </div>
-            <div class="content-page flex-column" id="page1">页面1</div>
-            <div class="content-page flex-column" id="page2">页面2</div>
-            <div class="content-page flex-column" id="page3">页面3</div>
-            <div class="content-page flex-column" id="page4">页面4</div>
-            <div class="content-page flex-column" id="page5">页面5</div>
-            
-            <div class="statement-box" id="pageInfo"></div>
+        <!-- 控制按钮 -->
+        <div class="GameStart flex-center-row" id="GameStart">
+            <p>开始游戏</p>
+            <img src="./GameAssets/Flower.png" alt="樱花">
         </div>
-        
+        <div class="GameReturn flex-center-row" id="GameReturn">
+            <p>返回选择</p>
+            <img src="./GameAssets/Flower.png" alt="樱花">
+        </div>
+        <div class="GameReSet flex-center-row" id="GameReSet">
+            <p>重置进度</p>
+            <img src="./GameAssets/Flower.png" alt="樱花">
+        </div>
 
     </div>
 
-    <script>
-        let scrollIndex = 1;
-        let direction = 1;
-        let startY;
-        let endY;
-        let isScroll = false;
-        let IsTouch = false;
-
-        // 鼠标滚动
-        document.querySelector('.content-box').addEventListener('wheel', (e) => {
-            e.preventDefault();
-            direction = e.wheelDelta > 0 ? -1 : 1;
-            ScrollPage(e);
-        }, { passive: false });
-
-        // 触摸滑动
-        // ——滑动开始
-        document.querySelector('.content-box').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            const container = e.currentTarget;
-            const touch = e.touches[0];
-            startY = touch.clientY;
-        });
-        // ——滑动中
-        document.querySelector('.content-box').addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            endY = touch.clientY;
-            direction = (endY - startY) > 0 ? -1 : 1;
-            
-        }, { passive: false });
-        // ——滑动结束
-        document.querySelector('.content-box').addEventListener('touchend', (e) => {
-            e.preventDefault();
-            ScrollPage(e);
-        });
-
-
-        function ScrollPage(e){
-            if (IsTouch) return;
-            IsTouch = true;
-            const container = e.currentTarget;
-            const containerHeight = (container.clientHeight - container.clientHeight * 0.4);
-            const delta = direction * containerHeight;
-            container.scrollBy({
-                top: delta,
-                behavior: 'smooth'
-            });
-            setTimeout(()=>{
-                IsTouch = false;
-            }, 500);
-        }
-
-
-    </script>
+    <script src="./JS/script.js"></script>
 </body>
 </html>

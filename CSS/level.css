@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* 防止选中 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@font-face {
+    font-family: SakuraHime;
+    /* src: var(--GameFont); */
+    src: url(../GameAssets/font/源流明體TW-EL.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #000;
+    overflow: hidden;
+}
+
+
+.webbg {
+    /* width: 100vw; */
+    height: 100dvh;
+    aspect-ratio: 16/9;
+    background-color: black;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.spine-player-canvas,
+.spine-player {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+
+.spine-player-buttons {
+    display: none;
+}
+
+.spinebg {
+    /* width: 100vw; */
+    height: 100dvh;
+    aspect-ratio: 16/9;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.btn {
+    position: absolute;
+    right: 3vw;
+    top: 1vw;
+    width: 6vw;
+    height: 1.5vw;
+    z-index: 99;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.btn img {
+    height: 100%;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.characteridle {
+    height: 100dvh;
+    aspect-ratio: 1/1;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    left: -8%;
+    z-index: 10;
+}
+
+.chess {
+    height: 90dvh;
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: 5dvh;
+    right: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: var(--ChessBG);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 棋盘格子 */
+.blockbox {
+    /* background-color: aquamarine; */
+    position: relative;
+    padding: 10px;
+    /* transform: scale(1.5); */
+}
+
+.block {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin: 5px 0px 0px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transition: all 0.5s;
+    cursor: move;
+    background-size: cover;
+    /* background-color: black; */
+}
+
+.block img {
+    width: 100%;
+    height: 100%;
+    /* 防止图片接收鼠标事件 */
+    pointer-events: none;
+    /* 防止选中 */
+    user-select: none;
+    /* 防止在WebKit浏览器中拖动 */
+    -webkit-user-drag: none;
+}
+
+/* 添加方块加载动画 */
+@keyframes blockLoad {
+    from {
+        width: 1px;
+        height: 1px;
+        /* opacity: 0; */
+        transform: scale(0.1);
+    }
+
+    to {
+        width: 50px;
+        height: 50px;
+        /* opacity: 1; */
+        transform: scale(1);
+    }
+}
+
+.block-loading {
+    animation: blockLoad 0.5s ease-out forwards;
+    transform-origin: center;
+}
+
+.no-drop::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    z-index: 99;
+    background-image: var(--Disable);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.block img {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+}
+
+/* 完成结算界面 */
+.finish {
+    height: 100dvh;
+    aspect-ratio: 16/9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: var(--FinishBG);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+    z-index: -1;
+    opacity: 0;
+    /* transform: scale(1.5); */
+}
+
+.finish .finishimg {
+    height: 50%;
+    aspect-ratio: 1200/812;
+}
+
+.finish .dialog {
+    height: 20%;
+    aspect-ratio: 1048/200;
+    background-image: var(--DialogBG);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10%;
+    transform: translateX(30%);
+    z-index: 999;
+    container-type: size;
+}
+
+.dialogtext {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    line-height: 15cqh;
+    font-size: 10cqh;
+    font-family: SakuraHime;
+    font-weight: lighter;
+    word-wrap: break-word;
+    color: #C69E86;
+}
