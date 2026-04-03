@@ -12,6 +12,7 @@
             if (data) {
                 console.log(data);
                 localStorage.removeItem('gameData');
+                data.url = '../';
                 document.documentElement.style.setProperty('--ChessBG', `url(${data.url}/GameAssets/Level/Chess.png)`);
                 document.documentElement.style.setProperty('--FinishBG', `url(${data.url}/GameAssets/Level/Black_BG.png)`);
                 document.documentElement.style.setProperty('--DialogBG', `url(${data.url}/GameAssets/Level/Content.png)`);

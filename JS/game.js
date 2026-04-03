@@ -100,47 +100,69 @@ function InitData() {
 function GetCharacterData() {
     return new Promise((resolve, reject) => {
         // 参数：游戏ID
-        fetch(`${WebUrl}/api/getRoleInfo?id=${GameChosen}`, {
-            method: 'GET',
+        // fetch(`${WebUrl}/api/getRoleInfo?id=${GameChosen}`, {
+        //     method: 'GET',
+        // })
+        //     .then(res => {
+        //         if (!res.ok) {
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         return res.json();
+        //     })
+        //     .then(data => {
+        //         GameData = data;
+        //         resolve();
+        //     })
+        //     .catch(error => {
+        //         console.error('获取角色数据失败:', error);
+        //         reject(error);
+        //     });
+        fetch(`${WebUrl}GameAssets/PlotData.json`, {
+            method: 'GET'
         })
             .then(res => {
-                if (!res.ok) {
-                    throw new Error('Network response was not ok');
-                }
                 return res.json();
             })
             .then(data => {
-                GameData = data;
+                GameData = data[`SakuraHime_${GameChosen}`];
+                console.log(GameData);
                 resolve();
             })
-            .catch(error => {
-                console.error('获取角色数据失败:', error);
-                reject(error);
-            });
     });
 }
 // 获取关卡数据
 function GetLevelData() {
     return new Promise((resolve, reject) => {
         // 参数：游戏ID, 关卡ID
-        fetch(`${WebUrl}/api/getLevelInfo?id=${GameChosen}&level=${LevelChosen}`, {
+        // fetch(`${WebUrl}/api/getLevelInfo?id=${GameChosen}&level=${LevelChosen}`, {
+        //     method: 'GET',
+        // })
+        //     .then(res => {
+        //         if (!res.ok) {
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         return res.json();
+        //     })
+        //     .then(data => {
+        //         LevelData = data;
+        //         // console.log(LevelData);
+        //         resolve();
+        //     })
+        //     .catch(error => {
+        //         console.error('获取关卡数据失败:', error);
+        //         reject(error);
+        //     });
+        fetch(`${WebUrl}GameAssets/LevelData.json`, {
             method: 'GET',
         })
             .then(res => {
-                if (!res.ok) {
-                    throw new Error('Network response was not ok');
-                }
                 return res.json();
             })
             .then(data => {
-                LevelData = data;
-                // console.log(LevelData);
+                LevelData = data[`SakuraHime_${GameChosen}`][`Level_${LevelChosen}`];
+                console.log(LevelData);
                 resolve();
             })
-            .catch(error => {
-                console.error('获取关卡数据失败:', error);
-                reject(error);
-            });
     });
 }
 

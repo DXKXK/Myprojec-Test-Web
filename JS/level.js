@@ -525,32 +525,33 @@ function LevelFinish() {
 // 上传数据到服务器
 function UploadData() {
     return new Promise(resolve => {
+        resolve();
         // 参数：游戏ID，关卡ID，章节ID
-        fetch(`${WebUrl}/api/setChapterInfo`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id: GameChosen,
-                level: LevelChosen,
-                chapter: ChapterChosen,
-            })
-        })
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return res.json();
-            })
-            .then(data => {
-                console.log(data);
-                resolve();
-            })
-            .catch(error => {
-                console.error('上传关卡数据失败:', error);
-                reject(error);
-            });
+        // fetch(`${WebUrl}/api/setChapterInfo`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         id: GameChosen,
+        //         level: LevelChosen,
+        //         chapter: ChapterChosen,
+        //     })
+        // })
+        //     .then(res => {
+        //         if (!res.ok) {
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         return res.json();
+        //     })
+        //     .then(data => {
+        //         console.log(data);
+        //         resolve();
+        //     })
+        //     .catch(error => {
+        //         console.error('上传关卡数据失败:', error);
+        //         reject(error);
+        //     });
     });
 }
 

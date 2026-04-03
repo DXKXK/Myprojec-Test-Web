@@ -11,6 +11,7 @@
             const data = JSON.parse(localStorage.getItem('gameData'));
             if (data) {
                 localStorage.removeItem('gameData');
+                data.url = '../';
                 document.documentElement.style.setProperty('--Selected', `url(${data.url}/GameAssets/LevelCard/Selected.png)`);
                 document.documentElement.style.setProperty('--LevelContent', `url(${data.url}/GameAssets/LevelCard/Letter_Content.png)`);
                 document.documentElement.style.setProperty('--LetterContent', `url(${data.url}/GameAssets/LevelCard/Letter_Chose.png)`);
