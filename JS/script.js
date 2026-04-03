@@ -52,6 +52,19 @@ let BG = document.getElementById("BG");
 
 window.onload = function() {
     const data = JSON.parse(localStorage.getItem('gameReturn'));
+    const LevelData = JSON.parse(localStorage.getItem('gameLevel'));
+    if(!LevelData || LevelData == {}){
+        // 设置游戏数据
+        fetch(`${WebUrl}GameAssets/LevelData.json`, {
+            method: 'GET',
+        })
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                localStorage.setItem('gameLevel', JSON.stringify(data));
+            })
+    }
     const DLC = 1;
     if(DLC){
         SpineDLC = DLC;
@@ -176,10 +189,11 @@ GameStart.addEventListener("click", function() {
 });
 // 控制按钮(重置进度)
 GameReSet.addEventListener("click", function() {
-    confirm("功能未开放");
+    // confirm("功能未开放");
     // 弹出提示，询问是否重置
-    // let isReset = confirm("是否重置进度?");
-    // if(isReset){
+    let isReset = confirm("是否重置进度?");
+    if(isReset){
+        ResetLevelData(GameChosen + 1);
     //     // 确认，发送重置请求
     //     fetch(`${WebUrl}/api/resetProgress`, {
     //         method: 'POST',
@@ -194,9 +208,9 @@ GameReSet.addEventListener("click", function() {
     //     .then(data => {
     //         console.log(data);
     //     });
-    // }else{
-    //     // 取消
-    // }
+    }else{
+        // 取消
+    }
 });
 
 //  加载Spine实例

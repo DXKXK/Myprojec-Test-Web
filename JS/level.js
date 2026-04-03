@@ -525,6 +525,7 @@ function LevelFinish() {
 // 上传数据到服务器
 function UploadData() {
     return new Promise(resolve => {
+        UpdateLevelData(GameChosen, LevelChosen, ChapterChosen);
         resolve();
         // 参数：游戏ID，关卡ID，章节ID
         // fetch(`${WebUrl}/api/setChapterInfo`, {

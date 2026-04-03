@@ -152,17 +152,20 @@ function GetLevelData() {
         //         console.error('获取关卡数据失败:', error);
         //         reject(error);
         //     });
-        fetch(`${WebUrl}GameAssets/LevelData.json`, {
-            method: 'GET',
-        })
-            .then(res => {
-                return res.json();
-            })
-            .then(data => {
-                LevelData = data[`SakuraHime_${GameChosen}`][`Level_${LevelChosen}`];
-                console.log(LevelData);
-                resolve();
-            })
+        // fetch(`${WebUrl}GameAssets/LevelData.json`, {
+        //     method: 'GET',
+        // })
+        //     .then(res => {
+        //         return res.json();
+        //     })
+        //     .then(data => {
+        //         LevelData = data[`SakuraHime_${GameChosen}`][`Level_${LevelChosen}`];
+        //         console.log(LevelData);
+        //         resolve();
+        //     })
+        const LevelDatas = JSON.parse(localStorage.getItem('gameLevel'));
+        LevelData = LevelDatas[`SakuraHime_${GameChosen}`][`Level_${LevelChosen}`];
+        resolve();
     });
 }
 
