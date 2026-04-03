@@ -6,7 +6,7 @@ let GameCount = 5;
 let Center = (GameChosen + Math.floor(GameCount / 2)) % GameCount;
 // Spine模型加载参数
 let SpineData = {
-    loading:false,
+    loading: false,
     showControls: false,
     premultipliedAlpha: true,
     backgroundColor: "#00000000",
@@ -29,11 +29,11 @@ let SpineData = {
 }
 // Spine模型加载状态
 let SpineLodaingState = {
-    SpineModel1:false,
-    SpineModel2:false,
-    SpineModel3:false,
-    SpineModel4:false,
-    SpineModel5:false,
+    SpineModel1: false,
+    SpineModel2: false,
+    SpineModel3: false,
+    SpineModel4: false,
+    SpineModel5: false,
 }
 let WebUrl = '';
 let IsReturn = false;
@@ -50,46 +50,57 @@ let ImgBox = document.getElementById("ImgBox");
 let GameLogo = document.getElementById("GameLogo");
 let BG = document.getElementById("BG");
 
-window.onload = function() {
+window.onload = function () {
     const data = JSON.parse(localStorage.getItem('gameReturn'));
-    const LevelData = JSON.parse(localStorage.getItem('gameLevel'));
-    if(!LevelData || LevelData == {}){
-        // 设置游戏数据
-        fetch(`${WebUrl}GameAssets/LevelData.json`, {
-            method: 'GET',
-        })
+    // const LevelData = JSON.parse(localStorage.getItem('gameLevel'));
+    const LevelDataRaw = localStorage.getItem('gameLevel');
+    let LevelData = null;
+    try {
+        LevelData = LevelDataRaw ? JSON.parse(LevelDataRaw) : null;
+    } catch (e) {
+        console.warn('解析 gameLevel 失败', e);
+    }
+    if (!LevelData) {   // 只要没有有效数据就去拉取
+        fetch(`${WebUrl}GameAssets/LevelData.json`)
             .then(res => {
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 return res.json();
             })
             .then(data => {
                 localStorage.setItem('gameLevel', JSON.stringify(data));
+                console.log('游戏等级数据已写入 localStorage');
             })
+            .catch(err => {
+                console.error('加载 LevelData.json 失败', err);
+                // 可以设置一个默认的空对象，避免反复请求
+                localStorage.setItem('gameLevel', JSON.stringify({}));
+            });
     }
     const DLC = 1;
-    if(DLC){
+    if (DLC) {
         SpineDLC = DLC;
-    }else{
+    } else {
         localStorage.setItem('gameDLC', JSON.stringify(1));
     }
-    if(data) {
+    if (data) {
         // console.log(data);
         localStorage.removeItem('gameReturn');
         // 重设GameChosen
         GameChosen = data.game - 1;
         Center = getCenter();
         IsReturn = true;
-    }else{
+    } else {
         GameChosen = 0;
     }
     // 获取URL参数
     // WebUrl = window.location.protocol + "//" + window.location.host;
     WebUrl = '.';
     console.log(WebUrl);
-    for(let i = 0 ; i < GameCount ; i++){
-        document.getElementById(`Game${i}`).addEventListener("click", function() {  
+    for (let i = 0; i < GameCount; i++) {
+        document.getElementById(`Game${i}`).addEventListener("click", function () {
             SideGameChose(i);
         });
-        document.getElementById(`Game${i}`).addEventListener("touchend", function() {
+        document.getElementById(`Game${i}`).addEventListener("touchend", function () {
             SideGameChose(i);
         })
     }
@@ -103,25 +114,25 @@ function getCenter() {
 }
 
 // 游戏选项卡被点击的时候
-function SideGameChose(num){
+function SideGameChose(num) {
     // console.log("选择游戏: " + num);
-    if(num!= GameChosen){
-        if(num == (GameChosen - 1 + GameCount) % GameCount){
+    if (num != GameChosen) {
+        if (num == (GameChosen - 1 + GameCount) % GameCount) {
             GameChosen = num;
             Center = (Center - 1 + GameCount) % GameCount;
             Init();
-        }else if(num == (GameChosen + 1) % GameCount){
-            GameChosen = num; 
+        } else if (num == (GameChosen + 1) % GameCount) {
+            GameChosen = num;
             Center = (Center + 1) % GameCount;
             Init();
         }
-    }else{
+    } else {
         GameChoose(num);
     }
 }
 
 // 游戏选中
-function GameChoose(num){
+function GameChoose(num) {
     GameChosen = num;
     let Game = document.getElementById(`Game${num}`);
     // 放大选中项
@@ -146,7 +157,7 @@ function GameChoose(num){
     GameReSet.style.zIndex = "6";
 }
 // 控制按钮(返回选择)
-GameReturn.addEventListener("click", function() {
+GameReturn.addEventListener("click", function () {
     let num = GameChosen;
     let Game = document.getElementById(`Game${num}`);
     // 移除遮罩层
@@ -171,7 +182,7 @@ GameReturn.addEventListener("click", function() {
     GameReSet.style.zIndex = "-1";
 });
 // 控制按钮(开始游戏)
-GameStart.addEventListener("click", function() {
+GameStart.addEventListener("click", function () {
     IsReturn = false;
     // 网页跳转URL/HTML/letter.html
     let data = {
@@ -188,50 +199,50 @@ GameStart.addEventListener("click", function() {
     // });
 });
 // 控制按钮(重置进度)
-GameReSet.addEventListener("click", function() {
+GameReSet.addEventListener("click", function () {
     // confirm("功能未开放");
     // 弹出提示，询问是否重置
     let isReset = confirm("是否重置进度?");
-    if(isReset){
+    if (isReset) {
         ResetLevelData(GameChosen + 1);
-    //     // 确认，发送重置请求
-    //     fetch(`${WebUrl}/api/resetProgress`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             id: GameChosen + 1
-    //         })
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data);
-    //     });
-    }else{
+        //     // 确认，发送重置请求
+        //     fetch(`${WebUrl}/api/resetProgress`, {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             id: GameChosen + 1
+        //         })
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log(data);
+        //     });
+    } else {
         // 取消
     }
 });
 
 //  加载Spine实例
-function SpineContainer(){
-    for(let i = 1 ; i <= GameCount ; i++){
-        SpinePlayer[`SpineModel${i}`] = new spine.SpinePlayer(`Game${i - 1}` ,{
+function SpineContainer() {
+    for (let i = 1; i <= GameCount; i++) {
+        SpinePlayer[`SpineModel${i}`] = new spine.SpinePlayer(`Game${i - 1}`, {
             jsonUrl: `${WebUrl}/GameAssets/${i}/Cover/Theme.json`,
             // skelUrl: `${WebUrl}/GameAssets/${i}/Cover/Theme.skel`,
             atlasUrl: `${WebUrl}/GameAssets/${i}/Cover/Theme.atlas`,
             animation: `Anim_${SpineDLC}`,
             ...SpineData,
-            success: function(player) {
-                console.log(`Game${i-1} Spine加载成功`);
+            success: function (player) {
+                console.log(`Game${i - 1} Spine加载成功`);
                 SpineLodaingState[`SpineModel${i}`] = true;
-                if(IsReturn){
+                if (IsReturn) {
                     GameChoose(GameChosen);
                 }
                 // console.log(SpinePlayer)
             },
-            error: function(error) {
-                console.log(`Game${i-1} Spine加载失败:`, error);
+            error: function (error) {
+                console.log(`Game${i - 1} Spine加载失败:`, error);
             }
         });
     }
@@ -251,7 +262,7 @@ function SpineContainer(){
 // });
 
 // 设置两侧播图
-function Init(){
+function Init() {
     // console.log("Center: " + Center);
     let CurrGame = document.getElementById(`Game${GameChosen}`);
     CurrGame.classList.remove("prev", "next");
@@ -264,9 +275,9 @@ function Init(){
 }
 
 // 设置上一个轮播图
-function SetPrev(num,Zindex){
+function SetPrev(num, Zindex) {
     let Prev = (num - 1 + GameCount) % GameCount;
-    if(Prev != Center){
+    if (Prev != Center) {
         // console.log("Prev" + Prev);
         let PrevGame = document.getElementById(`Game${Prev}`);
         PrevGame.classList.remove("active", "next");
@@ -276,12 +287,12 @@ function SetPrev(num,Zindex){
     }
 }
 // 设置下一个轮播图
-function SetNext(num,Zindex){
-    if(num != Center){
+function SetNext(num, Zindex) {
+    if (num != Center) {
         let Next = (num + 1) % GameCount;
         // console.log("Next" + Next);
         let NextGame = document.getElementById(`Game${Next}`);
-        NextGame.classList.remove("active","prev");
+        NextGame.classList.remove("active", "prev");
         NextGame.classList.add("next");
         NextGame.style.zIndex = Zindex;
         SetNext(Next, Zindex - 1);
