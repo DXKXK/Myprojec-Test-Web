@@ -55,12 +55,14 @@ window.onload = function () {
     // const LevelData = JSON.parse(localStorage.getItem('gameLevel'));
     const LevelDataRaw = localStorage.getItem('gameLevel');
     let LevelData = null;
+    // 判空
     try {
         LevelData = LevelDataRaw ? JSON.parse(LevelDataRaw) : null;
     } catch (e) {
         console.warn('解析 gameLevel 失败', e);
     }
-    if (!LevelData) {   // 只要没有有效数据就去拉取
+    // 判断是否需要获取数据
+    if (!LevelData) {
         fetch(`${WebUrl}GameAssets/LevelData.json`)
             .then(res => {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -72,7 +74,6 @@ window.onload = function () {
             })
             .catch(err => {
                 console.error('加载 LevelData.json 失败', err);
-                // 可以设置一个默认的空对象，避免反复请求
                 localStorage.setItem('gameLevel', JSON.stringify({}));
             });
     }

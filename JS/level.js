@@ -283,6 +283,7 @@ function InitBlock() {
             }
         });
     });
+    console.log("方块加载完成");
 
 }
 
