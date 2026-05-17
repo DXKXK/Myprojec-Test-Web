@@ -85,7 +85,7 @@ function LoadBgSpine() {
 function InitData() {
     // 加载关闭按钮的图片
     let CloseImg = document.createElement(`img`);
-    CloseImg.src = `${WebUrl}/GameAssets/Close.png`;
+    CloseImg.src = `${WebUrl}GameAssets/Close.png`;
     CloseImg.alt = `关闭`;
     CloseBtn.appendChild(CloseImg);
     // LoadCardList();
@@ -192,7 +192,7 @@ CloseBtn.addEventListener(`click`, function () {
         game: GameChosen
     };
     localStorage.setItem('gameReturn', JSON.stringify(data));
-    window.location.href = `${WebUrl}/index.html`;
+    window.location.href = `${WebUrl}index.html`;
 });
 
 // 进入关卡选择
