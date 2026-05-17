@@ -606,7 +606,7 @@ function ToLevelChoose() {
         level: LevelChosen
     };
     localStorage.setItem('gameData', JSON.stringify(data));
-    window.location.href = `${WebUrl}/HTML/game.html`;
+    window.location.href = `${WebUrl}HTML/game.html`;
 }
 
 // 加载对话文字
