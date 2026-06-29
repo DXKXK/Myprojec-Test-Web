@@ -1,7 +1,7 @@
 // 当前选中
 let GameChosen = '';
 // 总共游戏数量
-let GameCount = 5;
+let GameCount = GAMECOUNT;
 // 用于确定两侧图片分配
 let Center = (GameChosen + Math.floor(GameCount / 2)) % GameCount;
 // Spine模型加载参数
@@ -34,6 +34,7 @@ let SpineLodaingState = {
     SpineModel3: false,
     SpineModel4: false,
     SpineModel5: false,
+    SpineModel6: false,
 }
 let WebUrl = '';
 let IsReturn = false;
@@ -41,6 +42,9 @@ let IsReturn = false;
 // 储存Spine实例
 let SpinePlayer = {};
 let SpineDLC = 1;
+
+// 游戏选中状态
+let IsChosen = false;
 
 // 获取元素
 let GameStart = document.getElementById("GameStart");
@@ -156,9 +160,11 @@ function GameChoose(num) {
     GameStart.style.zIndex = "6";
     GameReSet.style.opacity = "1";
     GameReSet.style.zIndex = "6";
+    // 游戏选中状态
+    IsChosen = true;
 }
 // 控制按钮(返回选择)
-GameReturn.addEventListener("click", function () {
+function GameReturnChoose() {
     let num = GameChosen;
     let Game = document.getElementById(`Game${num}`);
     // 移除遮罩层
@@ -181,9 +187,60 @@ GameReturn.addEventListener("click", function () {
     GameStart.style.zIndex = "-1";
     GameReSet.style.opacity = "0";
     GameReSet.style.zIndex = "-1";
+    // 游戏选中状态
+    IsChosen = false;
+}
+// 键盘监控
+document.addEventListener("keydown", function(event) {
+    let GameIndex = 0;
+    console.log(event);
+    // 按下Esc键时，返回选择界面
+    if(event.key == "Escape"){
+        GameReturnChoose();
+    }
+    // 按下Enter键时且由于游戏选中状态，开始游戏
+    if(event.key == "Enter" && IsChosen){
+        StartGame();
+    }
+    // 左右切换游戏
+    if(event.key == "ArrowLeft" || event.key == "ArrowRight"){
+        let IsNowChosen = IsChosen;
+        if(IsChosen){
+            GameReturnChoose();
+        }
+        // 切换游戏
+        setTimeout(() => {
+            if(event.key == "ArrowLeft"){
+                // 向左
+                GameIndex = (GameChosen - 1 + GameCount) % GameCount;
+                SideGameChose(GameIndex);
+            } else if(event.key == "ArrowRight"){
+                // 向右
+                GameIndex = (GameChosen + 1) % GameCount;
+                SideGameChose(GameIndex);
+            }
+        }, IsChosen ? 100 : 500);
+        setTimeout(() => {
+            if(IsNowChosen){
+                GameChoose(GameIndex);
+            }
+        },1500);   
+    }
+    // 空格选中游戏
+    if(event.key == " "){
+        GameChoose(GameChosen);
+    }
+});
+// 控制按钮(返回选择)
+GameReturn.addEventListener("click", function() {
+    GameReturnChoose();
 });
 // 控制按钮(开始游戏)
-GameStart.addEventListener("click", function () {
+GameStart.addEventListener("click", function() {
+    StartGame();
+});
+// 控制按钮(开始游戏)
+function StartGame(){
     IsReturn = false;
     // 网页跳转URL/HTML/letter.html
     let data = {
@@ -198,7 +255,7 @@ GameStart.addEventListener("click", function () {
     // Object.keys(SpinePlayer).forEach(key => {
     //     SpinePlayer[key].setAnimation(`Anim_${SpineDLC}`);
     // });
-});
+}
 // 控制按钮(重置进度)
 GameReSet.addEventListener("click", function () {
     // confirm("功能未开放");

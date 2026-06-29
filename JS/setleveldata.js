@@ -1,3 +1,7 @@
+// 游戏数量
+const GAMECOUNT = 6;
+
+// 游戏数据重置函数
 function ResetLevelData(id) {
     const data = JSON.parse(localStorage.getItem('gameLevel'));
     let LevelData = data;
@@ -30,6 +34,7 @@ function ResetLevelData(id) {
     console.log("游戏数据重置成功");
 }
 
+// 游戏数据更新函数
 function UpdateLevelData(id, level, chapter) {
     const data = JSON.parse(localStorage.getItem('gameLevel'));
     let LevelData = data;
